@@ -16,9 +16,7 @@ For more information about Hangman game, please further read the appending refer
 
 ## Flowchart
 
-<img
-  src="https://drive.google.com/file/d/0BxPek4CTWDqCTm9iSmpOTUdNTlE/view?usp=sharing" alt="Hangman Flowchart"
-  width="400" height="600" align="center">
+[Build Hangman game](https://github.com/prisbre/Hangman/blob/master/Flowchart.svg "Click to see flowchart")
 
 ## Reference
 
