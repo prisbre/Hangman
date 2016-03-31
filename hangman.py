@@ -28,7 +28,7 @@ def isValid(userInput):
     Input: a string containing user input.
     Return: a boolean value, True if userInput is valid.
 
-    This function guarentees userInput meet the following constraints:
+    Guarantee userInput to meet the following constraints:
     * userInput.length = 1
     * only alphabet accept
     * ignore case
