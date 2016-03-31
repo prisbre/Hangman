@@ -14,6 +14,12 @@ For more information about Hangman game, please further read the appending refer
 * Double click open Hangman.py
 * Have fun! :jack_o_lantern:
 
+## Flowchart
+
+<img
+  src="https://drive.google.com/file/d/0BxPek4CTWDqCTm9iSmpOTUdNTlE/view?usp=sharing" alt="Hangman Flowchart"
+  width="400" height="600" align="center">
+
 ## Reference
 
 [Hangman (game) in Wikipedia](https://en.wikipedia.org/wiki/Hangman_(game)
