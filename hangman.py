@@ -6,9 +6,10 @@ import os.path
 
 fileName = str(os.path.dirname(__file__)) + r"\words.txt"
 
-def loadWords(fileName):
+def getWords(fileName):
     """
-    Returns a list of valid words. Words are strings of lowercase letters.
+    Input a file only containing words in one line.
+    Returns a valid words at random. Words are strings of lowercase letters.
 
     Depending on the size of the word list, this function may
     take a while to finish.
@@ -18,13 +19,14 @@ def loadWords(fileName):
     line = fileHandle.readline()
     wordlist = string.split(line)
     print "  ", len(wordlist), "words loaded."
-    return wordlist
+    return random.choice(wordlist).lower()
 
-
-def chooseWord(wordlist):
+targetWord = getWords(fileName)
 
 '''
 def isLegal(input):
+
+
 
 def isWordGuessed(letterGuessed, target):
 
@@ -36,4 +38,3 @@ def narrowRange(letterGuessed):
 def hangman():
 '''
 
-hangman()
