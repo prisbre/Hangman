@@ -33,10 +33,10 @@ def isValid(userInput):
     * only alphabet accept
     * ignore case
     '''
-    if len(userInput) == 0 or len(letterInput) > 1:
+    if len(userInput) == 0 or len(userInput) > 1:
         return False
     else:
-        return letterInput.isalpha()
+        return userInput.isalpha()
 
 
 
