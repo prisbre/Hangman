@@ -93,13 +93,26 @@ def isWordGuessed(charGuessed, targetWord):
     else:
         return False
 
+def narrowRange(charInput):
+    '''
+    charInput: list, containing letters typed so far, no duplicate.
+    Return: string, containing filtered Alphabet for choosing.
+    '''
+    # Delete input letters from Alphabet to narrow range
+    availableLetters = 'A B C D E F G H I J K L M ' + \
+        'N O P Q R S T U V W X Y Z '
+    for element in charInput :
+        element = element.upper()
+        if element in availableLetters:
+            oldElement = element + ' '
+            availableLetters = availableLetters.replace(oldElement, '')
+    return availableLetters
+
+
+
+
 
 '''
-def getGuessedWord(letterGuessed, target):
-
-def narrowRange(letterGuessed):
-
-
 def hangman():
 '''
 
