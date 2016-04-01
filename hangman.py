@@ -26,7 +26,7 @@ targetWord = getWords(fileName)
 def isValid(userInput):
     '''
     Input: string, containing user input.
-    Return: boolean value, True if userInput is valid.
+    Return: boolean, True if userInput is valid.
 
     Guarantee userInput to meet the following constraints:
     * userInput.length = 1
@@ -38,11 +38,11 @@ def isValid(userInput):
     else:
         return userInput.isalpha()
 
-def showCharGuessed(charGuessed, targetWord, guessed):
+def showCharGuessed(charGuessed, targetWord, allGuessed):
     '''
-    charGuessed: list, storing letters have been guessed.
-    targetWord: string, storing the secret word the user is guessing.
-    guessed: boolean value, True if targetWord is guessed.
+    charGuessed: list, containing letters have been guessed, no duplicate.
+    targetWord: string, containing the secret word the user is guessing.
+    allGuessed: boolean, True if targetWord is guessed.
     Return: string, comprised of letters and underscores that represents
         what letters in secretWord have been guessed.
         eg. '_ _ _ a _'
@@ -55,20 +55,46 @@ def showCharGuessed(charGuessed, targetWord, guessed):
         for i in range(tagetLength):
             showGuessed += '_ '
     # Base on targetWord, append character properly
-    elif not guessed:
+    elif not allGuessed:
         for i in range(tagetLength):
             if targetWord[i] in charGuessed:
                 showGuessed = showGuessed + targetWord[i] + ' '
             else:
                 showGuessed = showGuessed + '_ '
-    # Show answer when fully guessed
+    # Show answer when all letters guessed
     else:
         showGuessed = targetWord
     return showGuessed
 
-'''
-def isWordGuessed(letterGuessed, target):
+def isWordGuessed(charGuessed, targetWord):
+    '''
+    charGuessed: list, containing letters have been guessed, no duplicate.
+    targetWord: string, containing the secret word the user is guessing.
+    Return: boolean, True if all the letters of targetWord are in charGuessed.
+    '''
+    # Transfer targetWord to a list with no duplicate
+    targetList = []
+    for e in targetWord:
+        if e not in targetList:
+            targetList.append(e)
 
+    # Comparison, add some defensive feature
+    guessedLen = len(charGuessed)
+    targetLen = len(targetList)
+    if guessedLen == targetLen:
+        count = 0
+        for e in targetList:
+            if e in charGuessed:
+                count += 1
+        if count == targetLen:
+            return True
+        else:
+            return False
+    else:
+        return False
+
+
+'''
 def getGuessedWord(letterGuessed, target):
 
 def narrowRange(letterGuessed):
