@@ -1,10 +1,9 @@
-# Hangman game
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
 
 import random
 import string
 import os.path
-
-fileName = str(os.path.dirname(__file__)) + r"\words.txt"
 
 def getWords(fileName):
     """
@@ -20,8 +19,6 @@ def getWords(fileName):
     wordlist = string.split(line)
     print "  ", len(wordlist), "words loaded."
     return random.choice(wordlist).lower()
-
-targetWord = getWords(fileName)
 
 def isValid(userInput):
     '''
@@ -43,6 +40,7 @@ def showCharGuessed(charGuessed, targetWord, allGuessed):
     charGuessed: list, containing letters have been guessed, no duplicate.
     targetWord: string, containing the secret word the user is guessing.
     allGuessed: boolean, True if targetWord is guessed.
+
     Return: string, comprised of letters and underscores that represents
         what letters in secretWord have been guessed.
         eg. '_ _ _ a _'
@@ -70,6 +68,7 @@ def isWordGuessed(charGuessed, targetWord):
     '''
     charGuessed: list, containing letters have been guessed, no duplicate.
     targetWord: string, containing the secret word the user is guessing.
+
     Return: boolean, True if all the letters of targetWord are in charGuessed.
     '''
     # Transfer targetWord to a list with no duplicate
@@ -78,7 +77,7 @@ def isWordGuessed(charGuessed, targetWord):
         if element not in targetList:
             targetList.append(element)
 
-    # Comparison, add some defensive feature
+    # Estimate whether targetWord is guessed in following conditions
     guessedLen = len(charGuessed)
     targetLen = len(targetList)
     if guessedLen == targetLen:
@@ -108,11 +107,73 @@ def narrowRange(charInput):
             availableLetters = availableLetters.replace(oldElement, '')
     return availableLetters
 
-
-
-
-
-'''
 def hangman():
-'''
+    '''
+    Main function
+
+    * At the start, computer randomly pick up a target word.
+    * Then show how many letters the secretWord contains.
+    * Ask user to input a letter per round.
+    * Feedback immediately after each guess, and show guessed letters.
+    * After each round, display remaining alphabets to choose.
+    * Keep going till successfully guessed or run out of tries.
+    '''
+
+    # Initialize and display word length
+    print 'Hi! Welcome to the game Hangman!'
+    fileName = str(os.path.dirname(__file__)) + r"\words.txt"
+    targetWord = getWords(fileName)
+    print 'I am thinking of a word that is',str(len(targetWord)),'letters long.' \
+        + ' Try to guess what it is. :P'
+    tries = len(targetWord) + 3
+    errors = 0
+    charInput = []          # Record all letter typed by user
+    charGuessed = []        # Record input letters that match target word
+
+    guessed = False
+    while not guessed:
+
+        # Display limited tries and letter range
+        print '------------------------------------------------------------ \n'
+        print 'You have ' + str(tries - errors) + ' tries to guess what it is.'
+        print 'Available letters to choose:\n' + \
+            narrowRange(charInput) + '\n' +\
+            'Guess word : ' + showCharGuessed(charGuessed, targetWord, guessed)
+
+        # Ask for valid input
+        valid = False
+        while not valid:
+            userInput = raw_input('Please give me a letter here: ').lower()
+            valid = isValid(userInput)
+            if not valid:
+                print 'Sorry, input is invalid. Try again.'
+        if userInput not in charInput:
+            charInput = charInput.append(userInput)
+
+        # Check if letter guessed
+        if userInput in targetWord:
+            charGuessed = charGuessed.append(userInput)
+            print 'Well done! You got this letter: '+ \
+                showCharGuessed(charGuessed, targetWord, guessed)
+        else:
+            errors += 1
+            print 'Oops! Not this one.'
+
+        # Check if run out of tries
+        if errors == tries:
+            print 'Well, you ran out of tries. \nThe secret word is '+ targetWord
+            break
+
+        # Congratulation when success
+        guessed = isWordGuessed(charGuessed, targetWord)
+        if guessed:
+            print 'Congratulations! You did it!'
+            print 'The secret word is '+ targetWord
+
+hangman()
+
+
+
+
+
 
