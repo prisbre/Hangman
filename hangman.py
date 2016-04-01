@@ -52,13 +52,13 @@ def showCharGuessed(charGuessed, targetWord, allGuessed):
 
     # Initialize as '_ _ _ _ _'
     if len(charGuessed) == 0:
-        for i in range(tagetLength):
+        for index in range(tagetLength):
             showGuessed += '_ '
     # Base on targetWord, append character properly
     elif not allGuessed:
-        for i in range(tagetLength):
-            if targetWord[i] in charGuessed:
-                showGuessed = showGuessed + targetWord[i] + ' '
+        for index in range(tagetLength):
+            if targetWord[index] in charGuessed:
+                showGuessed = showGuessed + targetWord[index] + ' '
             else:
                 showGuessed = showGuessed + '_ '
     # Show answer when all letters guessed
@@ -74,17 +74,17 @@ def isWordGuessed(charGuessed, targetWord):
     '''
     # Transfer targetWord to a list with no duplicate
     targetList = []
-    for e in targetWord:
-        if e not in targetList:
-            targetList.append(e)
+    for element in targetWord:
+        if element not in targetList:
+            targetList.append(element)
 
     # Comparison, add some defensive feature
     guessedLen = len(charGuessed)
     targetLen = len(targetList)
     if guessedLen == targetLen:
         count = 0
-        for e in targetList:
-            if e in charGuessed:
+        for element in targetList:
+            if element in charGuessed:
                 count += 1
         if count == targetLen:
             return True
