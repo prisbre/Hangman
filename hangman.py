@@ -20,17 +20,22 @@ def getWords(fileName):
     print "  ", len(wordlist), "words loaded."
     return random.choice(wordlist).lower()
 
-def isValid(userInput):
+def isValid(userInput, charInput):
     '''
-    Input: string, containing user input.
+    userInput: string, containing user input per guess.
+    charInput: list, containing letters typed so far, no duplicate.
+
     Return: boolean, True if userInput is valid.
 
     Guarantee userInput to meet the following constraints:
-    * userInput.length = 1
-    * only alphabet accept
-    * ignore case
+    * accept userInput.length = 1 only
+    * accept alphabet only
+    * ignore case status
+    * return False if the letters have been tried
     '''
-    if len(userInput) == 0 or len(userInput) > 1:
+    if len(userInput) != 1:
+        return False
+    elif userInput in charInput:
         return False
     else:
         return userInput.isalpha()
@@ -144,11 +149,11 @@ def hangman():
         valid = False
         while not valid:
             userInput = raw_input('Please give me a letter here: ').lower()
-            valid = isValid(userInput)
+            valid = isValid(userInput, charInput)
             if not valid:
                 print 'Sorry, input is invalid. Try again.'
         if userInput not in charInput:
-            charInput.append(userInput)     #fix: charInput = charInput.append(userInput)
+            charInput.append(userInput)
 
         # Check if letter guessed
         if userInput in targetWord:
