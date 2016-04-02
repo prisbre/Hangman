@@ -148,7 +148,7 @@ def hangman():
             if not valid:
                 print 'Sorry, input is invalid. Try again.'
         if userInput not in charInput:
-            charInput = charInput.append(userInput)
+            charInput.append(userInput)     #fix: charInput = charInput.append(userInput)
 
         # Check if letter guessed
         if userInput in targetWord:
