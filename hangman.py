@@ -40,11 +40,10 @@ def isValid(userInput, charInput):
     else:
         return userInput.isalpha()
 
-def showCharGuessed(charGuessed, targetWord, allGuessed):
+def showCharGuessed(charGuessed, targetWord):
     '''
     charGuessed: list, containing letters have been guessed, no duplicate.
     targetWord: string, containing the secret word the user is guessing.
-    allGuessed: boolean, True if targetWord is guessed.
 
     Return: string, comprised of letters and underscores that represents
         what letters in secretWord have been guessed.
@@ -58,15 +57,12 @@ def showCharGuessed(charGuessed, targetWord, allGuessed):
         for index in range(tagetLength):
             showGuessed += '_ '
     # Base on targetWord, append character properly
-    elif not allGuessed:
+    else:
         for index in range(tagetLength):
             if targetWord[index] in charGuessed:
                 showGuessed = showGuessed + targetWord[index] + ' '
             else:
                 showGuessed = showGuessed + '_ '
-    # Show answer when all letters guessed
-    else:
-        showGuessed = targetWord
     return showGuessed
 
 def isWordGuessed(charGuessed, targetWord):
@@ -143,7 +139,7 @@ def hangman():
         print 'You have ' + str(tries - errors) + ' tries to guess what it is.'
         print 'Available letters to choose:\n' + \
             narrowRange(charInput) + '\n' +\
-            'Guess word : ' + showCharGuessed(charGuessed, targetWord, guessed)
+            'Guess word : ' + showCharGuessed(charGuessed, targetWord)
 
         # Ask for valid input
         valid = False
@@ -159,7 +155,7 @@ def hangman():
         if userInput in targetWord:
             charGuessed = charGuessed.append(userInput)
             print 'Well done! You got this letter: '+ \
-                showCharGuessed(charGuessed, targetWord, guessed)
+                showCharGuessed(charGuessed, targetWord)
         else:
             errors += 1
             print 'Oops! Not this one.'
