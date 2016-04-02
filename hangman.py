@@ -49,7 +49,12 @@ def showCharGuessed(charGuessed, targetWord):
         what letters in secretWord have been guessed.
         eg. '_ _ _ a _'
     '''
+    print 'here showCharGuessed' #
+    print 'charGuessed', type(charGuessed) #
+    print charGuessed #
+
     tagetLength = len(targetWord)
+    print 'targetWord', targetWord #
     showGuessed = ''
 
     # Initialize as '_ _ _ _ _'
@@ -142,18 +147,23 @@ def hangman():
             'Guess word : ' + showCharGuessed(charGuessed, targetWord)
 
         # Ask for valid input
+        print 'Ask for valid input' #
         valid = False
         while not valid:
             userInput = raw_input('Please give me a letter here: ').lower()
             valid = isValid(userInput, charInput)
+            print type(charInput) #
+            print 'out valid', charInput,'valid',valid #
             if not valid:
                 print 'Sorry, input is invalid. Try again.'
         if userInput not in charInput:
             charInput.append(userInput)
 
         # Check if letter guessed
+        print 'Check if letter guessed' #
         if userInput in targetWord:
             charGuessed = charGuessed.append(userInput)
+            print 'charGuessed', charGuessed
             print 'Well done! You got this letter: '+ \
                 showCharGuessed(charGuessed, targetWord)
         else:
@@ -161,6 +171,7 @@ def hangman():
             print 'Oops! Not this one.'
 
         # Check if run out of tries
+        print 'Check if run out of tries'
         if errors == tries:
             print 'Well, you ran out of tries. \nThe secret word is '+ targetWord
             break
