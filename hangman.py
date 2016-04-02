@@ -163,7 +163,7 @@ def hangman():
         # Check if letter guessed
         print 'Check if letter guessed' #
         if userInput in targetWord:
-            charGuessed = charGuessed.append(userInput) # <<< scope
+            charGuessed.append(userInput) # <<< scope append-method
             print 'charGuessed', charGuessed
             print 'Well done! You got this letter: '+ \
                 showCharGuessed(charGuessed, targetWord)
