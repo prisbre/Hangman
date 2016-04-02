@@ -49,12 +49,8 @@ def showCharGuessed(charGuessed, targetWord):
         what letters in secretWord have been guessed.
         eg. '_ _ _ a _'
     '''
-    print 'here showCharGuessed' #
-    print 'charGuessed', type(charGuessed) #
-    print charGuessed #
 
     tagetLength = len(targetWord)
-    print 'targetWord', targetWord #
     showGuessed = ''
 
     # Initialize as '_ _ _ _ _'
@@ -135,7 +131,7 @@ def hangman():
     errors = 0
     charInput = []          # Record all letter typed by user
     charGuessed = []        # Record input letters that match target word
-    userInput = '' # <<< scope
+    userInput = ''
 
     guessed = False
     while not guessed:
@@ -147,24 +143,19 @@ def hangman():
             narrowRange(charInput) + '\n' +\
             'Guess word : ' + showCharGuessed(charGuessed, targetWord)
 
-        # Ask for valid input
-        print 'Ask for valid input' #
+        # Ask for valid input s
         valid = False
         while not valid:
             userInput = raw_input('Please give me a letter here: ').lower()
             valid = isValid(userInput, charInput)
-            print type(charInput) #
-            print 'out valid', charInput,'valid',valid #
             if not valid:
                 print 'Sorry, input is invalid. Try again.'
         if userInput not in charInput:
             charInput.append(userInput)
 
         # Check if letter guessed
-        print 'Check if letter guessed' #
         if userInput in targetWord:
-            charGuessed.append(userInput) # <<< scope append-method
-            print 'charGuessed', charGuessed
+            charGuessed.append(userInput)
             print 'Well done! You got this letter: '+ \
                 showCharGuessed(charGuessed, targetWord)
         else:
@@ -172,7 +163,6 @@ def hangman():
             print 'Oops! Not this one.'
 
         # Check if run out of tries
-        print 'Check if run out of tries'
         if errors == tries:
             print 'Well, you ran out of tries. \nThe secret word is '+ targetWord
             break
