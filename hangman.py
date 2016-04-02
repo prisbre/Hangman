@@ -113,12 +113,11 @@ def hangman():
     '''
     Main function
 
-    * At the start, computer randomly pick up a target word.
-    * Then show how many letters the secretWord contains.
-    * Ask user to input a letter per round.
-    * Feedback immediately after each guess, and show guessed letters.
-    * After each round, display remaining alphabets to choose.
-    * Keep going till successfully guessed or run out of tries.
+    * At the start, computer randomly pick up a target word from words.txt
+    * Then, display the attempt times and hind how many letters contains in target word
+    * After that, show available alphabets and ask player to choose one per round
+    * Feedback immediately after each guess, and show guessed letters when right
+    * Loop untill successfully guessed or run out of tries.
     '''
 
     # Initialize and display word length
@@ -135,7 +134,6 @@ def hangman():
 
     guessed = False
     while not guessed:
-
         # Display limited tries and letter range
         print '------------------------------------------------------------ \n'
         print 'You have ' + str(tries - errors) + ' tries to guess what it is.'
