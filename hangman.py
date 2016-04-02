@@ -49,6 +49,7 @@ def showCharGuessed(charGuessed, targetWord):
         what letters in secretWord have been guessed.
         eg. '_ _ _ a _'
     '''
+
     tagetLength = len(targetWord)
     showGuessed = ''
 
@@ -130,6 +131,7 @@ def hangman():
     errors = 0
     charInput = []          # Record all letter typed by user
     charGuessed = []        # Record input letters that match target word
+    userInput = ''
 
     guessed = False
     while not guessed:
@@ -141,7 +143,7 @@ def hangman():
             narrowRange(charInput) + '\n' +\
             'Guess word : ' + showCharGuessed(charGuessed, targetWord)
 
-        # Ask for valid input
+        # Ask for valid input s
         valid = False
         while not valid:
             userInput = raw_input('Please give me a letter here: ').lower()
@@ -153,7 +155,7 @@ def hangman():
 
         # Check if letter guessed
         if userInput in targetWord:
-            charGuessed = charGuessed.append(userInput)
+            charGuessed.append(userInput)
             print 'Well done! You got this letter: '+ \
                 showCharGuessed(charGuessed, targetWord)
         else:
