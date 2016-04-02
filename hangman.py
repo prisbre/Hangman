@@ -135,6 +135,7 @@ def hangman():
     errors = 0
     charInput = []          # Record all letter typed by user
     charGuessed = []        # Record input letters that match target word
+    userInput = '' # <<< scope
 
     guessed = False
     while not guessed:
@@ -162,7 +163,7 @@ def hangman():
         # Check if letter guessed
         print 'Check if letter guessed' #
         if userInput in targetWord:
-            charGuessed = charGuessed.append(userInput)
+            charGuessed = charGuessed.append(userInput) # <<< scope
             print 'charGuessed', charGuessed
             print 'Well done! You got this letter: '+ \
                 showCharGuessed(charGuessed, targetWord)
