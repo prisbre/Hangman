@@ -143,7 +143,7 @@ def hangman():
             narrowRange(charInput) + '\n' +\
             'Guess word : ' + showCharGuessed(charGuessed, targetWord)
 
-        # Ask for valid input s
+        # Ask for valid input
         valid = False
         while not valid:
             userInput = raw_input('Please give me a letter here: ').lower()
